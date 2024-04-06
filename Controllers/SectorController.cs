@@ -26,6 +26,21 @@ namespace Prueba.Controllers
             return View( _context.Sectors.FirstOrDefault(s => s.Id == id));
         }
 
+        //Vista Crear
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        //Accion para crear
+        [HttpPost]
+        public IActionResult Create(Sector sector){
+
+            _context.Sectors.Add(sector);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
 
         //Accion de editar
         [HttpPost]

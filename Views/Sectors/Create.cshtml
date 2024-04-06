@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Create Sector";
+}
+
+@model Sector
+
+<div class="container">
+    <h1>Create sector</h1>
+    <div class="row">
+        <a asp-controller="Sectors" asp-action="Index">&leftarrow; back</a>
+    </div>
+
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control">
+        </div>
+         <div class="form-group">
+            <label asp-for="Author"></label>
+            <input asp-for="Author" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-success">Create</button>
+    </form>
+</div>
