@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+
+    <h1>Hola Sectors</h1>
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Author</th>
+            <th>Actions</th>
+        </thead>
+
+        <tbody>
+            @foreach(var sector in Model){
+                <tr>
+                    <td>@sector.Id</td>
+                    <td>@sector.Name</td>
+                    <td>@sector.Description</td>
+                    <td>@sector.Author</td>
+                    <td><a class="btn btn-sm btn-warning">Edit</a> <a class="btn btn-sm btn-primary">Details</a> <a class="btn btn-sm btn-danger">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
