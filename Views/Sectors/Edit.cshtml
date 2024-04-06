@@ -10,7 +10,7 @@
     <div class="row">
         <a asp-controller="Sectors" asp-action="Index">&leftarrow; back</a>
     </div>
-    <form action="" class="form">
+    <form asp-action="Update" method="post" class="form">
         <div class="form-group">
             <label for="">Id:</label>
             <input type="text" name="Id" value="@Model.Id" class="form-control" readonly>

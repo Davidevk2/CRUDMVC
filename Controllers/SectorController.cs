@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Prueba.Data;
+using Prueba.Models;
 
 namespace Prueba.Controllers
 {
@@ -23,6 +24,16 @@ namespace Prueba.Controllers
         //Vista editar
         public IActionResult Edit(int? id){
             return View( _context.Sectors.FirstOrDefault(s => s.Id == id));
+        }
+
+
+        //Accion de editar
+        [HttpPost]
+        public IActionResult Update(Sector sector){
+
+            _context.Sectors.Update(sector);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
 
