@@ -15,8 +15,9 @@
             </form>
         </div>
     </div>
-    <table class="table">
+    <table class="table table-bordered mt-3">
         <thead>
+            <th>#</th>
             <th>Id</th>
             <th>Name</th>
             <th>Description</th>
@@ -25,15 +26,36 @@
         </thead>
 
         <tbody>
-            @foreach(var sector in Model){
+            @{
+                int numberRow = 1; 
+            }
+            @foreach (var sector in Model)
+            {
                 <tr>
+                    <td>@numberRow</td>
                     <td>@sector.Id</td>
                     <td>@sector.Name</td>
                     <td>@sector.Description</td>
                     <td>@sector.Author</td>
-                    <td><a asp-controller="Sectors" asp-action="Edit" asp-route-id="@sector.Id"  class="btn btn-sm btn-warning">Edit</a> <a asp-controller="Sectors" asp-action="Details" asp-route-id="@sector.Id" class="btn btn-sm btn-primary">Details</a> <a asp-controller="Sectors" asp-action="Delete" asp-route-id="@sector.Id" class="btn btn-sm btn-danger">Delete</a></td>
+                    <td><a asp-controller="Sectors" asp-action="Edit" asp-route-id="@sector.Id"
+                            class="btn btn-sm btn-warning">Edit</a> <a asp-controller="Sectors" asp-action="Details"
+                            asp-route-id="@sector.Id" class="btn btn-sm btn-primary">Details</a> <a asp-controller="Sectors"
+                            asp-action="Delete" asp-route-id="@sector.Id" class="btn btn-sm btn-danger">Delete</a></td>
                 </tr>
+                numberRow++;
             }
         </tbody>
     </table>
+
+    <!-- Controles de paginación -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                    <a class="page-link" href="/Sectors/Index?pagina=@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
 </div>
