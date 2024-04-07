@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] ="Datils";
+}
+
+<div class="conatiner">
+    <a asp-controller="Sectors" asp-action="Index">&leftarrow; back</a>
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">@Model.Name</h2>
+            <p>Description: @Model.Description</p>
+            <p>Author: @Model.Author</p>
+        </div>
+        <div class="card-footer">
+            <a asp-controller="Sectors" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+            <a asp-controller="Sectors" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>

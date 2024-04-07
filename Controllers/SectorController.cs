@@ -51,6 +51,11 @@ namespace Prueba.Controllers
             return RedirectToAction("Index");
         }
 
+        //Vista para ver detalles 
+        public IActionResult Details(int? id){
+            return View( _context.Sectors.Find(id));
+        }
+
 
    }
 }
