@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Prueba.Data;
 using Prueba.Models;
 
@@ -15,9 +16,16 @@ namespace Prueba.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
-            return View( _context.Sectors.ToList());
+        
+            var sector = from sectors in _context.Sectors select sectors;
+            if(!string.IsNullOrEmpty(search)){
+                sector = sector.Where( result => result.Id.ToString().Contains(search) || result.Name.Contains(search)  || result.Description.Contains(search)  || result.Author.Contains(search) );
+            }
+            
+            return View( sector.OrderByDescending(s => s.Name).Take(30).ToList());
+            
         }
 
 
