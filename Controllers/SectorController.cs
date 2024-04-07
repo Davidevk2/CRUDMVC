@@ -56,6 +56,18 @@ namespace Prueba.Controllers
             return View( _context.Sectors.Find(id));
         }
 
+        //Accion de eliminar
+        public IActionResult Delete(int id){
+
+            var sector = _context.Sectors.Find(id);
+
+            _context.Sectors.Remove(sector);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
 
    }
 }
