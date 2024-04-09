@@ -1,3 +1,5 @@
+using Prueba.Helpers;
+using Prueba.Providers;
 using Microsoft.EntityFrameworkCore;
 using Prueba.Data;
 
@@ -11,6 +13,8 @@ builder.Services.AddDbContext<SectorsContext>(options =>
             Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql"))
     );
 
+builder.Services.AddSingleton<PathProvider>();
+builder.Services.AddSingleton<HelperUploadFiles>();
 
 var app = builder.Build();
 
