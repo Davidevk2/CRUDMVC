@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Prueba.Data;
 using Prueba.Models;
 using System.IO;
-using Prueba.Helpers;
-using Prueba.Providers;
+
 
 namespace Prueba.Controllers
 {
@@ -12,11 +11,11 @@ namespace Prueba.Controllers
     public class CompaniesController : Controller
     {
         public readonly SectorsContext _context;
-        private HelperUploadFiles helperUpload;
+        private readonly IWebHostEnvironment _hostingEnviroment;
 
-        public CompaniesController(SectorsContext context, HelperUploadFiles  helperUpload){
+        public CompaniesController(SectorsContext context, IWebHostEnvironment hostingEnvironment){
             _context = context;
-            this.helperUpload = helperUpload;
+            _hostingEnviroment = hostingEnvironment;
         }
       
 
@@ -25,32 +24,21 @@ namespace Prueba.Controllers
             return View( _context.Companies.ToList());
         }
 
-        public async Task<IActionResult> Create(){
+        public IActionResult Create(){
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Insert(Company company, IFormFile archivo, int ubicacion){
+        public async Task<IActionResult> Insert(Company company, IFormFile archivo){
 
-        string nombreArchivo = archivo.FileName;
-        string path = "";
-          switch (ubicacion)
-            {
-                case 0:
-                    path = await this.helperUpload.UploadFilesAsync(archivo, nombreArchivo, Folders.Uploads);
-                    break;
-                case 1:
-                    path = await this.helperUpload.UploadFilesAsync(archivo, nombreArchivo, Folders.Images);
-                    break;
-                case 2:
-                    path = await this.helperUpload.UploadFilesAsync(archivo, nombreArchivo, Folders.Documents);
-                    break;
-                case 3:
-                    path = await this.helperUpload.UploadFilesAsync(archivo, nombreArchivo, Folders.Temp);
-                    break;
-            }
 
-            company.Logo = nombreArchivo;
+            var rutaDestino = Path.Combine(_hostingEnviroment.WebRootPath, "images", archivo.FileName);
+            using (var stream = new FileStream(rutaDestino, FileMode.Create)){
+                await archivo.CopyToAsync(stream);
+            }   
+      
+            company.Logo = "/images/"+ archivo.FileName;
+            
             _context.Companies.Add(company);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");

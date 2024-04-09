@@ -35,10 +35,10 @@
                 <td>@company.Address</td>
                 <td>@company.Description</td>
                 <td>
-                <a href="~/documents/@company.Logo" download="@company.Logo">Documento </a>
+                <a href="@company.Logo" download="@company.Logo" class="btn btn-dark">Descargar </a>
 
                 </td>
-                <td><img src="~/images/@company.Logo" alt="@company.Logo" class="object-fit-contain w-50" width="10px" ></td>
+                <td width="100px"><img src="@company.Logo" alt="@company.Logo" class="object-fit-contain" width="100px" ></td>
                 <td>@company.LegalRepresentative</td>
                 <td><a href="">Edit</a> <a href="">Details</a> <a href="">Delete</a></td>
             </tr>
