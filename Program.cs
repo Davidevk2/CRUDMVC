@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Prueba.Data;
+using Prueba.Helpers;
+using Prueba.Providers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,10 @@ builder.Services.AddDbContext<SectorsContext>(options =>
             builder.Configuration.GetConnectionString("MySqlConnection"),
             Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql"))
     );
+
+//Configuracion de providers y helpers
+builder.Services.AddSingleton<PathProvider>();
+builder.Services.AddSingleton<HelperUploadFiles>();
 
 
 var app = builder.Build();

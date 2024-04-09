@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <h1>List of companies</h1>
+    <div class="row">
+        <div class="col">
+            <a asp-controller="Companies" asp-action="Create" class="btn btn-success">Create Company</a>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Nit</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Description</th>
+                <th>Logo</th>
+                <th>Legal Reprensetative</th>
+                <th>Actions</th>
+            </tr>        
+        </thead>
+
+        <tbody>
+            @foreach(var company in Model){
+            <tr>
+                <td>@company.Id</td>
+                <td>@company.Name</td>
+                <td>@company.Nit</td>
+                <td>@company.Phone</td>
+                <td>@company.Address</td>
+                <td>@company.Description</td>
+                <td>
+                <a href="~/documents/@company.Logo" download="@company.Logo">Documento </a>
+
+                </td>
+                <td><img src="~/images/@company.Logo" alt="@company.Logo" class="object-fit-contain w-50" width="10px" ></td>
+                <td>@company.LegalRepresentative</td>
+                <td><a href="">Edit</a> <a href="">Details</a> <a href="">Delete</a></td>
+            </tr>
+
+            }
+        </tbody>
+    </table>
+
+
+    <h3>lista de documetos</h3>
+</div>

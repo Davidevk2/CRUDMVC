@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model Company
+
+<div class="container">
+    <h1>Create Company</h1>
+
+    <form asp-action="Insert" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Nit"></label>
+            <input asp-for="Nit" class="form-control">
+        </div>
+        <div class="form-group">
+            <label asp-for="Phone"></label>
+            <input asp-for="Phone" class="form-control">
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control">
+        </div>
+        <div class="form-group">
+            <label asp-for="Address"></label>
+            <input asp-for="Address" class="form-control">
+        </div>
+        <div class="form-group">
+            <label asp-for="LegalRepresentative"></label>
+            <input asp-for="LegalRepresentative" class="form-control">
+        </div>
+          <div class="form-group">
+            <label asp-for="SectorId"></label>
+            <input asp-for="SectorId" class="form-control">
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="">Ubicacion:</label>
+                <select name="ubicacion" id="" class="form-select">
+                    <option value="1">Imagenes</option>
+                    <option value="2">Documentos</option>
+                    <option value="0">Descargas</option>
+                    <option value="3">Temporal</option>
+                </select>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Logo"></label>
+                    <input type="file" name="archivo" class="form-control">
+                </div>
+
+            </div>
+        </div>
+        
+
+        <button class="btn btn-success">Create</button>
+    </form>
+</div>

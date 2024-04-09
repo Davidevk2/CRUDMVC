@@ -9,6 +9,7 @@ namespace Prueba.Data{
 
         //registrar modelos que se usan en el program 
         public DbSet<Sector> Sectors {get; set;}
+        public DbSet<Company> Companies {get; set;}
 
     }
 }
